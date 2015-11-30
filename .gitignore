@@ -1,0 +1,13 @@
+*~
+*.pyc
+\#*\#
+hidden.py
+trainingandtestdata/
+.DS_Store
+model*.dat
+results.txt
+todos.txt
+*evaluatorstats*
+nohup.out
+evaluation.txt
+pics/
