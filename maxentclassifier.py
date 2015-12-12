@@ -1,17 +1,32 @@
+"""
+@author: Shubham Mahajan
+
+@instructor: Dr. Lillian Cassel
+
+@course: Information Retrieval
+
+@project: Twitter Sentiment Analysis on Shark Tank deals
+"""
+
 '''
-Implementation of Maximum Entropy Classifier for tweets
+Class Objective in a nutshell:
+    Implementation of Maximum Entropy Classifier for tweets
 '''
+
+################################## Imports ####################################
 import sys
-import csv
-import re
+#import csv
+#import re
 import os
 import cPickle as pickle
 
 from classifier import Classifier
-from evaluator import Evaluator
+#from evaluator import Evaluator
 from nltk.classify.maxent import MaxentClassifier
 
+################################## Class ######################################
 class MaximumEntropyClassifier(Classifier):
+    ################################## Methods ################################
     def __init__(self, rawfname, min_occurences=5, **kargs):
         Classifier.__init__(self, rawfname, **kargs)
 
@@ -49,7 +64,7 @@ class MaximumEntropyClassifier(Classifier):
         '''
 
         training_sample = self.getSampleTweets(self.filesubset)
-        print('Training on %i lines' % len(training_sample))
+        print 'Training on %i lines' % len(training_sample)
 
         for each in training_sample:
             classification = each[0]
@@ -60,9 +75,9 @@ class MaximumEntropyClassifier(Classifier):
             self.all_training_examples.append((feature_vector, classification))       
 
         shrunk_features = self.shrinkFeatureSet()
-        print('Padding feature vectors. There are %i total features' % len(self.all_features))
+        print 'Padding feature vectors. There are %i total features' % len(self.all_features)
         self.initShrunkExamples(shrunk_features)
-        print('Padding done')
+        print 'Padding done'
         
     
     def shrinkFeatureSet(self):
@@ -73,7 +88,7 @@ class MaximumEntropyClassifier(Classifier):
             if num_ocurrences >= self.min_occurences:
                 shrunk[feat] = num_ocurrences
 
-        print('Shrunk down to %i features' % len(shrunk))
+        print 'Shrunk down to %i features' % len(shrunk)
 
         return shrunk
 
@@ -124,7 +139,7 @@ class MaximumEntropyClassifier(Classifier):
         else:
 
             self.initFeatures()
-            print('Done reading in training examples')
+            print 'Done reading in training examples'
             kargs = {
                 'algorithm' : 'gis',
             }
@@ -133,7 +148,7 @@ class MaximumEntropyClassifier(Classifier):
 
             self.model = MaxentClassifier.train(self.shrunk_training_examples, **kargs)
             self.pickleModel()
-        print('Max ent model built')
+        print 'Reading Pickle files..'
 
 
     def classify(self, text):
@@ -146,7 +161,7 @@ class MaximumEntropyClassifier(Classifier):
         pickle_name = self.getPickleFileName()
 
         if os.path.exists(pickle_name):
-            f = file(pickle_name, 'rb')
+            f = open(pickle_name, 'rb')
             model = pickle.load(f)
             f.close()
 
@@ -179,7 +194,7 @@ class MaximumEntropyClassifier(Classifier):
 def main():    
     # file to get training data from
     trainfile = "trainingandtestdata/training.csv"
-    testfile = "trainingandtestdata/testing.csv"
+    #testfile = "trainingandtestdata/testing.csv"
 
     maxent_args = {
       'filesubset' : 3500,
@@ -192,7 +207,10 @@ def main():
 
     # optionally, pass in some tweet text to classify
     if len(sys.argv) == 2:
-        print(ent.classify(sys.argv[1])
+        print ent.classify(sys.argv[1])
     
+
 if __name__ == "__main__":
     main()
+    
+################################ End of File ##################################

@@ -1,19 +1,28 @@
+"""
+@author: Shubham Mahajan
+
+@instructor: Dr. Lillian Cassel
+
+@course: Information Retrieval
+
+@project: Twitter Sentiment Analysis on Shark Tank deals
+"""
+
 '''
-Contains main implementation of a generic Classifier for tweets.
-Reads in language model and stores into a model.
+Class Objective in a nutshell:
+    Contains main implementation of a generic Classifier for tweets.
+    Reads in language model and stores into a model.
 '''
+
+################################## Imports ####################################
 import csv
 import re
 import nltk
 import os
-try:
-    import cPickle as pickle
-except:
-    import pickle
+import cPickle as pickle
 import random
 
-from functools import reduce
-
+################################## Class ######################################
 class Classifier:
     '''
     rawfname -> name of file containing raw training data
@@ -23,6 +32,7 @@ class Classifier:
              so [1,2] means unigrams + bigrams
     __init__(self, rawfname, modelfname, force, grams)
     '''
+    ################################## Methods ################################
     def __init__(self, rawfname, *args, **kargs):
         self.rawfname = rawfname
 
@@ -126,7 +136,9 @@ class Classifier:
             )
             # stop iff we have data for the number of grams we want
             if grams == self.numgrams:
-                print("Model retrieved from '%s'" % self.modelfname)
+                print "Launch tornado on localhost"
+                #print "Model retrieved from '%s'" % self.modelfname
+                
                 return
 
         f = open(self.rawfname)
@@ -149,7 +161,7 @@ class Classifier:
                     open(self.modelfname, "wb")
         )
 
-        print("Model stored in '%s'" % self.modelfname)
+        print "Model stored in '%s'" % self.modelfname
 
         f.close()
 
@@ -246,3 +258,5 @@ class Classifier:
 
     def __repr__(self):
         return "Classifier info: (weight=%s, grams=%s)" % (self.weight, self.numgrams)
+    
+################################ End of File ##################################

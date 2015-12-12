@@ -62,17 +62,21 @@ class Evaluator:
         accpos = float(correctpos)*100/totalpos
         accneg = float(correctneg)*100/totalneg
         accall = float(correctall)*100/totalall
+        precision = float(correctpos)*100/correctall
         corrall = 100-float(abs(correctpos-correctneg))*100/totalall
 
         if self.stdout:
-            print("="*100)
-            print(classifier)
-            print("Accuracy for Positives: %.2f%%" % accpos)
-            print("Accuracy for Negatives: %.2f%%" % accneg)
-            print("Accuracy for (Positives|Negatives): %.2f%%" % accall)
-            print("Correlation for (Positives|Negatives): %.2f%%" % corrall)
-            print("="*100)
-            print()
+            print "="*100
+            #print classifier
+            print "True Positives: %.2f" % correctpos
+            print "False Positives: %.2f" % correctneg
+            print "False Positives: %.2f" % accpos
+            print "False Negatives: %.2f" % accneg
+            print "Recall: %.2f%%" % accall
+            print "Precision: %.2f%%" % precision
+            #print "Correlation for (Positives|Negatives): %.2f%%" % corrall
+            print "="*100
+            print
 
         return [str(classifier), accpos, accneg, accall, corrall]
 

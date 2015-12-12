@@ -1,16 +1,26 @@
-#! /usr/bin/env python
+"""
+@author: Shubham Mahajan
+
+@instructor: Dr. Lillian Cassel
+
+@course: Information Retrieval
+
+@project: Twitter Sentiment Analysis on Shark Tank deals
+"""
+
 '''
-Main file to start tornado server
+Class Objective in a nutshell:
+    Main file to start tornado server
 '''
+
+################################## Imports ####################################
 import tornado.ioloop
 import tornado.web
 import urllib
 import tweepy
 import os
-from urllib.parse import urlparse
-#from hidden import *
 
-#from maxentclassifier import MaximumEntropyClassifier
+from maxentclassifier import MaximumEntropyClassifier
 from naivebayesclassifier import NaiveBayesClassifier
 
 # name of training set file
@@ -21,10 +31,14 @@ nb = NaiveBayesClassifier(fname, grams=[1,2])
 nb.setThresholds(neg=1.0, pos=20.0)
 nb.setWeight(0.000000000005)
 nb.trainClassifier()
-classifiers = [nb]
+ment = MaximumEntropyClassifier(fname)
+ment.trainClassifier()
+classifiers = [nb, ment]
 
-
+################################## Class ######################################
 class MainHandler(tornado.web.RequestHandler):
+
+    ################################## Methods ################################    
     '''
     Handles request to main page
     '''
@@ -38,7 +52,7 @@ class MainHandler(tornado.web.RequestHandler):
         api = tweepy.API(auth)
 
         # search twitter
-        results = api.search(q=urllib.parse.quote(query)) if len(query) > 0 else []
+        results = api.search(q=urllib.quote(query)) if len(query) > 0 else []
 
         tweets = []
         poscount = 0
@@ -82,3 +96,4 @@ if __name__ == "__main__":
     application.listen(8888)
     tornado.ioloop.IOLoop.instance().start()
     
+################################ End of File ##################################

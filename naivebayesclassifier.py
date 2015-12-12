@@ -1,11 +1,26 @@
+"""
+@author: Shubham Mahajan
+
+@instructor: Dr. Lillian Cassel
+
+@course: Information Retrieval
+
+@project: Twitter Sentiment Analysis on Shark Tank deals
+"""
+
 '''
-Implementation of Naive Bayes Classifier for tweets
+Class Objective in a nutshell:
+    Implementation of Naive Bayes Classifier for tweets
 '''
+
+################################## Imports ####################################
 import sys
 import math
 from classifier import Classifier
 
+################################## Class ######################################
 class NaiveBayesClassifier(Classifier):
+    ################################## Methods ################################
     def __init__(self, fname, *args, **kargs):
         Classifier.__init__(self, fname, *args, **kargs)
 
@@ -68,12 +83,14 @@ def main():
         text = sys.argv[1]
         result = naive.classify(text)
         if result == 0:
-            print("'%s' predicted to be Negative" % text)
+            print "'%s' predicted to be Negative" % text
         elif result == 1:
-            print("'%s' predicted to be Positive" % text)
+            print "'%s' predicted to be Positive" % text
         else:
-            print("'%s' predicted to be Neutral" % text)
+            print "'%s' predicted to be Neutral" % text
     
 
 if __name__ == "__main__":
     main()
+    
+################################ End of File ##################################

@@ -1,5 +1,15 @@
-#!/usr/bin/env python
+"""
+@author: Shubham Mahajan
+
+@instructor: Dr. Lillian Cassel
+
+@course: Information Retrieval
+
+@project: Twitter Sentiment Analysis on Shark Tank deals
+"""
+
 '''
+Class Objective in a nutshell:
 Contains implementation of Naive Bayes Classifier based upon
 Generic Classifier for tweets.
 
@@ -24,14 +34,18 @@ and store the result in the file 'stats/nbevaluatorstats<current datetime>.csv'.
 python naivebayesevaluator.py -g 1 1,2 should print out accuracy of 
 naive bayes on the TRAINING set.
 '''
+
+################################## Imports ####################################
 from evaluator import Evaluator
 from naivebayesclassifier import NaiveBayesClassifier
 import csv
 import datetime
-import sys
+#import sys
 import argparse
 
+################################## Class ######################################
 class NaiveBayesEvaluator(Evaluator):
+    ################################## Methods ################################
     def __init__(self, trainfile, devfile, testfile, *args, **kargs):
         Evaluator.__init__(self, trainfile, devfile, testfile, *args, **kargs)
 
@@ -46,13 +60,13 @@ class NaiveBayesEvaluator(Evaluator):
             w = csv.writer(f, delimiter=',', quotechar='"')
             # write out header            
             w.writerow(["Classifier Info",
-                        "Accuracy for Positives (%)",
-                        "Accuracy for Negatives (%)",
-                        "Accuracy for (Positives|Negatives) (%)",
+                        "Recall for Positives (%)",
+                        "Recall for Negatives (%)",
+                        "Recall for (Positives|Negatives) (%)",
                         "Correlation for (Positives|Negatives) (%)"])
             for row in self.results:
                 w.writerow(row)
-        print("Flushing results of Naive Bayes evaluation into '%s'..." % fname)
+        print "Flushing results of Naive Bayes evaluation into '%s'..." % fname
 
     def run(self):
         if not self.usedev:
@@ -136,3 +150,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+################################ End of File ##################################

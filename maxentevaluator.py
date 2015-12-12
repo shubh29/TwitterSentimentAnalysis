@@ -1,3 +1,18 @@
+"""
+@author: Shubham Mahajan
+
+@instructor: Dr. Lillian Cassel
+
+@course: Information Retrieval
+
+@project: Twitter Sentiment Analysis on Shark Tank deals
+"""
+
+'''
+Class Objective in a nutshell:
+    Evaluate Maximum Entropy Classifier from pickled files
+'''
+################################## Imports ####################################
 import cPickle as pickle
 import os
 import datetime
@@ -6,8 +21,10 @@ import csv
 from evaluator import Evaluator
 from maxentclassifier import MaximumEntropyClassifier
 
+################################## Class ######################################
 class MaxEntEvaluator(Evaluator):
-
+    
+    ################################## Methods ################################
     def __init__(self, trainfile, devfile, testfile, maxent_args = {}, **kargs):
         Evaluator.__init__(self, trainfile, devfile, testfile, **kargs)
         self.maxent_args = maxent_args
@@ -18,7 +35,7 @@ class MaxEntEvaluator(Evaluator):
         the trained model
         '''
         ent = MaximumEntropyClassifier(self.rawfname, **self.maxent_args)
-        print('Initialized classifier, about to train...')
+        print 'Initialized classifier, about to train...'
         ent.trainClassifier()
 
         self.evaluate(ent)
@@ -32,7 +49,7 @@ class MaxEntEvaluator(Evaluator):
       ent_model = pickle.load(f)
       f.close()
 
-      print('Loaded classifier from', picklefile)
+      print 'Loaded classifier from', picklefile
       ent = MaximumEntropyClassifier(self.rawfname, **self.maxent_args)
       ent.setModel(ent_model)
 
@@ -48,7 +65,7 @@ class MaxEntEvaluator(Evaluator):
       models = []
 
       for pick in pickle_files:
-        print(self.runFromPickle(pickledir + pick))
+        print self.runFromPickle(pickledir + pick)
         accpos, accneg, accall, corrall = self.runFromPickle(pickledir + pick)
         
         models.append([pick, accpos, accneg, accall, corrall])
@@ -95,7 +112,7 @@ class MaxEntEvaluator(Evaluator):
               'grams' : grams
             }
             ent = MaximumEntropyClassifier(self.rawfname, **self.maxent_args)
-            print('About to train with', self.maxent_args)
+            print 'About to train with', self.maxent_args
             ent.trainClassifier()
             self.evaluate(ent)
 
@@ -136,3 +153,5 @@ def main():
 
 if __name__ == '__main__':
   main()
+  
+################################ End of File ##################################

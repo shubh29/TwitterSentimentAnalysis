@@ -1,5 +1,16 @@
-class Feature:
+"""
+@author: Shubham Mahajan
 
+@instructor: Dr. Lillian Cassel
+
+@course: Information Retrieval
+
+@project: Twitter Sentiment Analysis on Shark Tank deals
+"""
+
+################################## Class ######################################
+class Feature:
+    ################################## Methods ################################
   def __init__(self, name, weight=None):
     self.name = name
     self.weight = weight
@@ -18,4 +29,6 @@ class UnigramFeature(Feature):
 
   def evaluate(self, intext):
     return 1 if self.unigram in intext else 0
+    
+################################ End of File ##################################
 
