@@ -1,10 +1,30 @@
+"""
+@author: Shubham Mahajan
+
+@instructor: Dr. Lillian Cassel
+
+@course: Information Retrieval
+
+@project: Twitter Sentiment Analysis on Shark Tank deals
+"""
+
 '''
-Used to evaluate the performance of the generic classifier
+Class Objective in a nutshell:
+    Used to evaluate the performance of the generic classifier
 '''
+################################## Sources ####################################
+
+# http://deeplearning.net/software/theano/tutorial/loading_and_saving.html
+# http://help.sentiment140.com/for-students/
+# https://github.com/alabid/sentimenttwitter
+
+################################## Imports ####################################
 import re
 import csv
 
+################################## Class ######################################
 class Evaluator:
+    ################################## Methods ################################
     '''
     trainfname => name of file containing raw training data
     testfname => name of file containing raw testing data
@@ -102,3 +122,5 @@ class Evaluator:
 
     def run(self):
         raise Exception("You must subclass 'Evaluator' and define run")
+ 
+################################ End of File ##################################

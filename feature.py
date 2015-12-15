@@ -7,6 +7,11 @@
 
 @project: Twitter Sentiment Analysis on Shark Tank deals
 """
+################################## Sources ####################################
+
+# http://deeplearning.net/software/theano/tutorial/loading_and_saving.html
+# http://help.sentiment140.com/for-students/
+# https://github.com/alabid/sentimenttwitter
 
 ################################## Class ######################################
 class Feature:

@@ -12,6 +12,13 @@
 Class Objective in a nutshell:
     Evaluate Maximum Entropy Classifier from pickled files
 '''
+
+################################## Sources ####################################
+
+# http://deeplearning.net/software/theano/tutorial/loading_and_saving.html
+# http://help.sentiment140.com/for-students/
+# https://github.com/alabid/sentimenttwitter
+
 ################################## Imports ####################################
 import cPickle as pickle
 import os

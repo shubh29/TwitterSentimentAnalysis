@@ -12,6 +12,11 @@
 Class Objective in a nutshell:
     Main file to start tornado server
 '''
+################################## Sources ####################################
+
+# http://deeplearning.net/software/theano/tutorial/loading_and_saving.html
+# http://help.sentiment140.com/for-students/
+# https://github.com/alabid/sentimenttwitter
 
 ################################## Imports ####################################
 import tornado.ioloop
